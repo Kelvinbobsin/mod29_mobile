@@ -1,33 +1,34 @@
-import { generalConf } from './general.conf.js'
-export let bsConf = {
-    user: process.env.BROWSERSTACK_USERNAME,
-    key: process.env.BROWSERSTACK_ACCESS_KEY,
-    hostname: 'hub.browserstack.com',
-    capabilities: process.env.PLATFORM === "android" ? [
-        {
-            "platformName": "Android",
-            "appium:deviceName": "Samsung Galaxy S22 Ultra",
-            "appium:platformVersion": "12.0",
-            "appium:automationName": "UIAutomator2",
-            "appium:app": "bs://16e5ac45b17489a7834cff7c956428f192fa2936"
-        }
-    ] : [
-        {
-            "platformName": "iOS",
-            "appium:deviceName": "iPhone 15",
-            "appium:platformVersion": "17",
-            "appium:automationName": "XCUITest",
-            "appium:app": "bs://0e4c1704da2ffcc46441765acc0964f39de949ef"
-        }
-    ],
-    commonCapabilities: {
-        'bstack:options': {
-            projectName: "BrowserStack EBAC",
-            buildName: 'browserstack build',
-            sessionName: `Test ${process.env.PLATFORM}`
-            // debug: true,
-            // networkLogs: true
-        }
-    },
-    ...generalConf
+require('dotenv').config()
+
+const { generalConf } = require('./general.conf')
+
+let capabilities = process.env.PLATFORM === 'android' ? {
+    capabilities: [{
+        app: `${process.env.ANDROID_APP_ID}`,
+        device: 'Samsung Galaxy Note 20',
+        os_version: '10.0',
+        project: 'Meu primeiro projeto em Device Farm',
+        build: 'EBAC CI Mobile',
+        name: 'teste_login'
+    }]
+} : {
+    capabilities: [{
+        app: `${process.env.IOS_APP_ID}`,
+        project: "Meu primeiro projeto Appium iOS BS",
+        build: 'EBAC Test iOS',
+        name: 'ebac_test',
+        device: 'iPhone 12 Pro',
+        os_version: "14",
+        'browserstack.debug': true
+    }]
 }
+
+let bsConf = {
+    ...generalConf,
+    ...capabilities,
+    user: process.env.BS_USER,
+    key: process.env.BS_KEY,
+    services: ['browserstack']
+}
+
+module.exports = { bsConf }

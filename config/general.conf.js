@@ -1,5 +1,6 @@
 const { hooksConf } = require("./hooks.conf")
-const { reportsConf } = require("./reports.conf")
+const { reportersConf } = require("./reports.conf")
+const { specsConf } = require("./specs.conf")
 
 let generalConf = {
     path: '/wd/hub',
@@ -10,6 +11,7 @@ let generalConf = {
     },
     maxInstances: 1,
     ...hooksConf,
-    ...reportsConf
-} 
+    ...reportersConf,
+    ...specsConf
+}
 module.exports = { generalConf }
