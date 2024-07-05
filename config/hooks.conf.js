@@ -1,5 +1,3 @@
-require('dotenv').config()
-
 let hooksConf = {
     afterStep: function (test, scenario, { error, duration, passed }) {
         if(error) {
@@ -16,11 +14,7 @@ let hooksConf = {
     afterSuite: async function(){
         //fechar o app
         await driver.closeApp()
-    },
-
-    afterEach: async function(){
-        driver.execute('window.localStorage.clear()');
-    },
+    }
 }
 
 module.exports = { hooksConf }

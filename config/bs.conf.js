@@ -2,26 +2,23 @@ require('dotenv').config()
 
 const { generalConf } = require('./general.conf')
 
-let capabilities = process.env.PLATFORM === 'android' ? {
-    capabilities: [{
-        app: `${process.env.ANDROID_APP_ID}`,
-        device: 'Samsung Galaxy Note 20',
-        os_version: '10.0',
-        project: 'Meu primeiro projeto em Device Farm',
-        build: 'EBAC CI Mobile',
-        name: 'teste_login'
-    }]
-} : {
-    capabilities: [{
-        app: `${process.env.IOS_APP_ID}`,
-        project: "Meu primeiro projeto Appium iOS BS",
-        build: 'EBAC Test iOS',
-        name: 'ebac_test',
-        device: 'iPhone 12 Pro',
-        os_version: "14",
-        'browserstack.debug': true
-    }]
-}
+let capabilities = process.env.PLATFORM === 'android' ? [
+      {
+        "platformName": "Android",
+        "appium:deviceName": "Samsung Galaxy S22 Ultra",
+        "appium:platformVersion": "12.0",
+        "appium:automationName": "UIAutomator2",
+        "appium:app": "bs://481b8b7163a669e6c765e69edc3e29b71120e0fe"
+    }
+] : [
+    {
+        "platformName": "iOS",
+        "appium:deviceName": "iPhone 15",
+        "appium:platformVersion": "17",
+        "appium:automationName": "XCUITest",
+        "appium:app": "bs://f1abddedd1b87aa26b333736e1aa3ff8337ab8d9"
+    }
+ ]
 
 let bsConf = {
     ...generalConf,
