@@ -3,8 +3,8 @@ const loginScreen = require("../screens/login.screen")
 const myStoreScreen = require("../screens/myStore.screen")
 
 let urlLoja = 'http://lojaebac.ebaconline.art.br/'
-let usuario = 'gerente'
-let senha = 'GD*peToHNJ1#c$sgk08EaYJQ'
+let usuario = 'admin@admin.com'
+let senha = 'admin123'
 
 describe('Access Admin Panel', () => {
     it('shoud login with valid credentials', async () => {
