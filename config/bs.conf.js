@@ -13,7 +13,7 @@ const { generalConf } = require('./general.conf')
             "appium:deviceName": "Samsung Galaxy S22 Ultra",
             "appium:platformVersion": "12.0",
             "appium:automationName": "UIAutomator2",
-            "appium:app": "bs://16e5ac45b17489a7834cff7c956428f192fa2936"
+            "appium:app": "bs://f6b5e425ba57244868e9f7553f99225da2d5819c"
         }
     ] : [
         {
